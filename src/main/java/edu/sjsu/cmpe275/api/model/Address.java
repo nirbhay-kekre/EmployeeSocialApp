@@ -3,11 +3,10 @@ package edu.sjsu.cmpe275.api.model;
 import javax.persistence.Embeddable;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 @XmlRootElement
-//@Embeddable
+@Embeddable
 public class Address {
+
 	private String street; // e.g., 100 Main ST
 
 	private String city;
