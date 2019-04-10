@@ -1,25 +1,27 @@
 package edu.sjsu.cmpe275.api.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 @XmlRootElement
-//@Entity
+@Entity
 public class Employer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@Column(unique=true, length=100)
 	private String name;
 	
 	private String description;
 	
+	@Embedded
 	private Address address;
 
 	public long getId() {
