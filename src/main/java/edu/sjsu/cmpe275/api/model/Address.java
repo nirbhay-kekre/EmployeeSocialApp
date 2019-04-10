@@ -8,16 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @XmlRootElement
 //@Embeddable
 public class Address {
-	@JsonProperty("street")
 	private String street; // e.g., 100 Main ST
 
-	@JsonProperty("city")
 	private String city;
 
-	@JsonProperty("state")
 	private String state;
 
-	@JsonProperty("zip")
 	private String zip;
 
 	public String getStreet() {

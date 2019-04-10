@@ -14,16 +14,12 @@ public class Employer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonProperty("id")
 	private long id;
 	
-	@JsonProperty("name")
 	private String name;
 	
-	@JsonProperty("description")
 	private String description;
 	
-	@JsonProperty("address")
 	private Address address;
 
 	public long getId() {

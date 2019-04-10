@@ -16,32 +16,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonProperty("id")
 	private long id;
 
-	@JsonProperty("name")
 	private String name;
 
-	@JsonProperty("email")
 	private String email;
 
-	@JsonProperty("title")
 	private String title;
 
 	//@Embedded
-	@JsonProperty("address")
 	private Address address;
 
-	@JsonProperty("employer")
 	private Employer employer;
 
-	@JsonProperty("manager")
 	private Employee manager;
 
-	@JsonProperty("reports")
 	private List<Employee> reports;
 
-	@JsonProperty("collaborators")
 	private List<Employee> collaborators;
 
 	public long getId() {
@@ -97,7 +88,7 @@ public class Employee {
 	}
 
 	public void setManager(Employee manager) {
-		manager = manager;
+		this.manager = manager;
 	}
 
 	public List<Employee> getReports() {
