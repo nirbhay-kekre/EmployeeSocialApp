@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -47,10 +49,14 @@ public class Employee {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "manager")
 	@JsonIgnoreProperties(value = {"manager", "reports", "employer", "address"})
-	private List<Employee> reports = new ArrayList<>();
+	private List<Employee> reports = new ArrayList<Employee>();
 
-//	
-//	private List<Employee> collaborators;
+	@ManyToMany
+	@JoinTable(name="COLLABORATION",
+	joinColumns= {@JoinColumn(name="collaboratingFrom", referencedColumnName="id")},
+	inverseJoinColumns= {@JoinColumn(name="collaboratingTo", referencedColumnName="id")})
+	@JsonIgnoreProperties(value = {"manager", "reports", "address"})
+	private List<Employee> collaborators = new ArrayList<Employee>();
 
 	public long getId() {
 		return id;
@@ -115,13 +121,13 @@ public class Employee {
 	public void setReports(List<Employee> reports) {
 		this.reports = reports;
 	}
-//
-//	public List<Employee> getCollaborators() {
-//		return collaborators;
-//	}
-//
-//	public void setCollaborators(List<Employee> collaborators) {
-//		this.collaborators = collaborators;
-//	}
+
+	public List<Employee> getCollaborators() {
+		return collaborators;
+	}
+
+	public void setCollaborators(List<Employee> collaborators) {
+		this.collaborators = collaborators;
+	}
 
 }

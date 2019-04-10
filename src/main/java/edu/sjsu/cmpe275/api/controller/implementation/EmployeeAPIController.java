@@ -30,14 +30,14 @@ public class EmployeeAPIController implements IEmployeeAPI {
 		Optional<Employee> emp = employeeRepository.findById(id);
 		if (emp.isPresent()) {
 			Employee employee = emp.get();
-			//lazy fetch manager
+			// lazy fetch manager
 			Employee man = employee.getManager();
 			if (man != null) {
 				man.getEmail();
 			}
-			//lazy fetch reports
+			// lazy fetch reports
 			employee.getReports().size();
-			return new ResponseEntity<Employee>(employee, headers, HttpStatus.NOT_IMPLEMENTED);
+			return new ResponseEntity<Employee>(employee, headers, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);
 		}
@@ -45,22 +45,37 @@ public class EmployeeAPIController implements IEmployeeAPI {
 
 	@Override
 	public ResponseEntity<Employee> deleteEmployee(Long id, String format) {
-		// TODO Auto-generated method stub
-		return null;
+		String type = "application/" + format.toLowerCase();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", type + "; charset=UTF-8");
+
+		// TODO: API logic
+
+		return new ResponseEntity<Employee>(new Employee(), headers, HttpStatus.NOT_IMPLEMENTED);
 	}
 
 	@Override
 	public ResponseEntity<Employee> createEmployee(String name, String email, String title, String street, String city,
 			String state, String zip, String employerId, String managerId, String format) {
-		// TODO Auto-generated method stub
-		return null;
+		String type = "application/" + format.toLowerCase();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", type + "; charset=UTF-8");
+
+		// TODO: API logic
+
+		return new ResponseEntity<Employee>(new Employee(), headers, HttpStatus.NOT_IMPLEMENTED);
 	}
 
 	@Override
-	public ResponseEntity<Employee> updateEmployee(String name, String email, String title, String street, String city,
-			String state, String zip, String employerId, String managerId, String format) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<Employee> updateEmployee(Long id, String name, String email, String title, String street,
+			String city, String state, String zip, String employerId, String managerId, String format) {
+		String type = "application/" + format.toLowerCase();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", type + "; charset=UTF-8");
+
+		// TODO: API logic
+
+		return new ResponseEntity<Employee>(new Employee(), headers, HttpStatus.NOT_IMPLEMENTED);
 	}
 
 }
