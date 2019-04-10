@@ -1,4 +1,4 @@
-package edu.sjsu.cmpe275.api.implementation;
+package edu.sjsu.cmpe275.api.controller.implementation;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
