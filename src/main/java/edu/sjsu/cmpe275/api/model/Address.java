@@ -3,7 +3,6 @@ package edu.sjsu.cmpe275.api.model;
 import javax.persistence.Embeddable;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 @Embeddable
 public class Address {
 

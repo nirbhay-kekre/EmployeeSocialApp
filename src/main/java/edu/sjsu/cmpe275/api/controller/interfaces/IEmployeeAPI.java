@@ -112,8 +112,7 @@ public interface IEmployeeAPI {
 	 * 
 	 * @return Employee
 	 */
-	@RequestMapping(value = "/employee", produces = { "application/xml", "application/json" }, consumes = {
-			"application/json", "application/xml" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/employee", produces = { "application/xml", "application/json" }, method = RequestMethod.POST)
 	ResponseEntity<Employee> createEmployee(@RequestParam(value = "name", required = true) String name,
 			@RequestParam(value = "email", required = true) String email,
 			@RequestParam(value = "title", required = false) String title,
@@ -121,8 +120,8 @@ public interface IEmployeeAPI {
 			@RequestParam(value = "city", required = false) String city,
 			@RequestParam(value = "state", required = false) String state,
 			@RequestParam(value = "zip", required = false) String zip,
-			@RequestParam(value = "employerId", required = true) String employerId,
-			@RequestParam(value = "managerId", required = false) String managerId,
+			@RequestParam(value = "employerId", required = true) Long employerId,
+			@RequestParam(value = "managerId", required = false) Long managerId,
 			@RequestParam(value = "format", defaultValue = "json", required = false) String format);
 
 	/**
@@ -169,8 +168,8 @@ public interface IEmployeeAPI {
 			@RequestParam(value = "city", required = false) String city,
 			@RequestParam(value = "state", required = false) String state,
 			@RequestParam(value = "zip", required = false) String zip,
-			@RequestParam(value = "employerId", required = true) String employerId,
-			@RequestParam(value = "managerId", required = false) String managerId,
+			@RequestParam(value = "employerId", required = true) Long employerId,
+			@RequestParam(value = "managerId", required = false) Long managerId,
 			@RequestParam(value = "format", defaultValue = "json", required = false) String format);
 
 }
