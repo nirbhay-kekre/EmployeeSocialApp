@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.sjsu.cmpe275.api.controller.interfaces.IEmployerAPI;
 import edu.sjsu.cmpe275.api.model.Employer;
+import edu.sjsu.cmpe275.api.model.Address;
 import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 import edu.sjsu.cmpe275.api.repository.EmployerRepository;
 
@@ -79,10 +80,33 @@ public class EmployerAPIController implements IEmployerAPI {
 		String type = "application/" + format.toLowerCase();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", type + "; charset=UTF-8");
-
-		// TODO: API logic
-
-		return new ResponseEntity<Employer>(new Employer(), headers, HttpStatus.NOT_IMPLEMENTED);
+		if(name == null) 
+			return new ResponseEntity<Employer>(HttpStatus.BAD_REQUEST);
+		
+		
+		Optional<Employer> emplr = employerRepository.findById(id);
+		if(emplr.isPresent()) {
+			Employer employer = emplr.get();
+			employer.setName(name);
+			employer.setDescription(description);
+			Address address = new Address();
+			address.setStreet(street);
+			address.setCity(city);
+			address.setState(state);
+			address.setZip(zip);
+			employer.setAddress(address);
+			employerRepository.save(employer);
+			return new ResponseEntity<Employer>(employer, headers, HttpStatus.OK);
+//			Optional<Employer> emplr_check = employerRepository.findById(id);
+//			if(emplr_check.isPresent()) {
+//				return new ResponseEntity<Employer>(emplr_check.get(), headers, HttpStatus.OK);
+//			}else {
+//				return new ResponseEntity<Employer>(HttpStatus.BAD_REQUEST);
+//			}
+			
+		}else {
+			return new ResponseEntity<Employer>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 }

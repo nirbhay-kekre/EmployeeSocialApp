@@ -33,8 +33,7 @@ public interface IEmployerAPI {
 			@RequestParam(value = "format", defaultValue = "json", required = false) String format);
 
 	@RequestMapping(value = "/employer/{id}", produces = { MediaType.APPLICATION_JSON_VALUE,
-			MediaType.APPLICATION_XML_VALUE }, consumes = { MediaType.APPLICATION_JSON_VALUE,
-					MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.PUT)
+			MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.PUT)
 	ResponseEntity<Employer> updateEmployer(@PathVariable(value = "id", required = true) Long id,
 			@RequestParam(value = "name", required = true) String name,
 			@RequestParam(value = "description", required = false) String description,
