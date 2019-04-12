@@ -158,8 +158,7 @@ public interface IEmployeeAPI {
 	 * @param format
 	 * @return
 	 */
-	@RequestMapping(value = "/employee/{id}", produces = { "application/xml", "application/json" }, consumes = {
-			"application/json", "application/xml" }, method = RequestMethod.PUT)
+	@RequestMapping(value = "/employee/{id}", produces = { "application/xml", "application/json" }, method = RequestMethod.PUT)
 	ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id", required = true) Long id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "email", required = true) String email,
