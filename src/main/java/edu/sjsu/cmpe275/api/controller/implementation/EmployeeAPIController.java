@@ -13,7 +13,7 @@ import edu.sjsu.cmpe275.api.model.Address;
 import edu.sjsu.cmpe275.api.model.Employee;
 import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 import edu.sjsu.cmpe275.api.repository.EmployerRepository;
-import edu.sjsu.cmpe275.api.repository.IEmployeeManagement;
+import edu.sjsu.cmpe275.api.repository.IEmployeeManagementService;
 import edu.sjsu.cmpe275.utils.EmployeeUtils;
 import edu.sjsu.cmpe275.utils.EmployerUtils;
 
@@ -26,7 +26,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	private EmployerRepository employerRepository;
 	
 	@Autowired
-	private IEmployeeManagement employeeManagementService;
+	private IEmployeeManagementService employeeManagementService;
 
 	@Override
 	public ResponseEntity<Employee> getEmployee(Long id, String format) {
@@ -49,15 +49,11 @@ public class EmployeeAPIController implements IEmployeeAPI {
 		Optional<Employee> employeeWrapper = employeeRepository.findById(id);
 		if (employeeWrapper.isPresent()) {
 			Employee employee = employeeWrapper.get();
-			if (employee.getReports() == null || employee.getReports().isEmpty()) {
-				EmployeeUtils.fetchLazyAttributeFromEmployee(employee);
-				employeeRepository.delete(employee);
-
+			if(employeeManagementService.deleteEmployee(employee)) {
 				return new ResponseEntity<Employee>(employee, headers, HttpStatus.OK);
-			} else {
+			}else {
 				return new ResponseEntity<Employee>(headers, HttpStatus.BAD_REQUEST);
 			}
-
 		} else {
 			return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);
 		}
