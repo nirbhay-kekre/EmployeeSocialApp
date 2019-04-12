@@ -40,7 +40,6 @@ public class Employee {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employer_id", referencedColumnName="id")
 	@JsonIgnoreProperties(value = {"address"})
-	
 	private Employer employer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
