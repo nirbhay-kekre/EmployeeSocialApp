@@ -1,7 +1,5 @@
 package edu.sjsu.cmpe275.api.controller.implementation;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +11,9 @@ import org.springframework.stereotype.Controller;
 import edu.sjsu.cmpe275.api.controller.interfaces.IEmployeeAPI;
 import edu.sjsu.cmpe275.api.model.Address;
 import edu.sjsu.cmpe275.api.model.Employee;
-import edu.sjsu.cmpe275.api.model.Employer;
-import edu.sjsu.cmpe275.api.repository.EmployeeManagementService;
 import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 import edu.sjsu.cmpe275.api.repository.EmployerRepository;
+import edu.sjsu.cmpe275.api.repository.IEmployeeManagement;
 import edu.sjsu.cmpe275.utils.EmployeeUtils;
 import edu.sjsu.cmpe275.utils.EmployerUtils;
 
@@ -29,7 +26,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	private EmployerRepository employerRepository;
 	
 	@Autowired
-	private EmployeeManagementService employeeManagementService;
+	private IEmployeeManagement employeeManagementService;
 
 	@Override
 	public ResponseEntity<Employee> getEmployee(Long id, String format) {

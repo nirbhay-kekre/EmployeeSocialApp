@@ -13,7 +13,7 @@ import edu.sjsu.cmpe275.utils.EmployeeUtils;
 import edu.sjsu.cmpe275.utils.EmployerUtils;
 
 @Service
-public class EmployeeManagementService {
+public class EmployeeManagementService implements IEmployeeManagement {
 
 	private EmployeeRepository employeeRepository;
 	private EmployerRepository employerRepository;
