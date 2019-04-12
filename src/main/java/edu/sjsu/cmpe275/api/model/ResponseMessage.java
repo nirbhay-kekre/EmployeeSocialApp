@@ -1,15 +1,12 @@
 package edu.sjsu.cmpe275.api.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
-public class CollaboratorMessage {
+public class ResponseMessage {
 	private String message;
 
-	public CollaboratorMessage() {
+	public ResponseMessage() {
 		
 	}
-	public CollaboratorMessage(String message) {
+	public ResponseMessage(String message) {
 		super();
 		this.message = message;
 	}

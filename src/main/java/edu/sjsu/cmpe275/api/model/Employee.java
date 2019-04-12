@@ -16,11 +16,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.xml.bind.annotation.XmlRootElement;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@XmlRootElement
 @Entity
 //@JsonInclude(Include.NON_NULL)
 public class Employee {
@@ -39,23 +38,25 @@ public class Employee {
 	private Address address;
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "employer_id", referencedColumnName="id")
+	@JsonIgnoreProperties(value = {"address"})
+	
 	private Employer employer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "manager_id")
-	@JsonIgnoreProperties(value = {"manager", "reports", "employer", "address"})
+	@JsonIgnoreProperties(value = {"manager", "reports", "employer", "address", "collaborators"})
 	private Employee manager;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "manager")
-	@JsonIgnoreProperties(value = {"manager", "reports", "employer", "address"})
+	@JsonIgnoreProperties(value = {"manager", "reports", "employer", "address", "collaborators"})
 	private List<Employee> reports = new ArrayList<Employee>();
 
 	@ManyToMany
 	@JoinTable(name="COLLABORATION",
 	joinColumns= {@JoinColumn(name="collaboratingFrom", referencedColumnName="id")},
 	inverseJoinColumns= {@JoinColumn(name="collaboratingTo", referencedColumnName="id")})
-	@JsonIgnoreProperties(value = {"manager", "reports", "address"})
+	@JsonIgnoreProperties(value = {"manager", "reports", "address", "collaborators"})
 	private List<Employee> collaborators = new ArrayList<Employee>();
 
 	public long getId() {
