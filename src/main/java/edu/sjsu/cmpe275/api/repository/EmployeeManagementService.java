@@ -13,7 +13,7 @@ import edu.sjsu.cmpe275.utils.EmployeeUtils;
 import edu.sjsu.cmpe275.utils.EmployerUtils;
 
 @Service
-public class EmployeeManagementService implements IEmployeeManagement {
+public class EmployeeManagementService implements IEmployeeManagementService {
 
 	private EmployeeRepository employeeRepository;
 	private EmployerRepository employerRepository;
@@ -29,7 +29,8 @@ public class EmployeeManagementService implements IEmployeeManagement {
 		Employer prevEmployer = employee.getEmployer();
 		Employee prevManager = employee.getManager();
 		if (employerId != prevEmployer.getId()) {
-			if (EmployerUtils.assignEmployer(employerRepository,employerId, employee) && EmployeeUtils.assignManager(employeeRepository, managerId, employee)) {
+			if (EmployerUtils.assignEmployer(employerRepository, employerId, employee)
+					&& EmployeeUtils.assignManager(employeeRepository, managerId, employee)) {
 				List<Employee> reports = employee.getReports();
 				employee.setReports(new ArrayList<>());
 				if (reports != null) {
@@ -42,12 +43,27 @@ public class EmployeeManagementService implements IEmployeeManagement {
 				return false;
 			}
 		} else {
-			if (!EmployeeUtils.assignManager(employeeRepository,managerId, employee)) {
+			if (!EmployeeUtils.assignManager(employeeRepository, managerId, employee)) {
 				return false;
 			}
 		}
 		employeeRepository.save(employee);
 		return true;
+	}
+
+	@Transactional
+	public boolean deleteEmployee(Employee employee) {
+		if (employee.getReports() == null || employee.getReports().isEmpty()) {
+			EmployeeUtils.fetchLazyAttributeFromEmployee(employee);
+			for(Employee collaborator : employee.getCollaborators()) {
+				collaborator.getCollaborators().remove(employee);
+				employeeRepository.save(collaborator);
+			}
+			employeeRepository.delete(employee);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
