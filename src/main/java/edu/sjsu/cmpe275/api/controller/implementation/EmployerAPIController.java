@@ -71,12 +71,14 @@ public class EmployerAPIController implements IEmployerAPI {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", type + "; charset=UTF-8");
 		
-		if(name == null)
+		if(name == null){
 			return new ResponseEntity<Employer>(headers,HttpStatus.BAD_REQUEST);
+		}
 		
 		Optional<Employer> employerWrapper = employerRepository.findByName(name);
-		if(employerWrapper.isPresent())
+		if(employerWrapper.isPresent()){
 			return new ResponseEntity<Employer>(headers,HttpStatus.BAD_REQUEST); 
+		}
 
 		Employer employer = new Employer();
 		employer.setName(name);
@@ -99,12 +101,22 @@ public class EmployerAPIController implements IEmployerAPI {
 		String type = "application/" + format.toLowerCase();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", type + "; charset=UTF-8");
-		if(name == null) 
+		//check if name is present
+		if(name == null){
 			return new ResponseEntity<Employer>(headers,HttpStatus.BAD_REQUEST);
+		}
 		
+		//check if an employer already exists by the new name
 		Optional<Employer> employerById = employerRepository.findById(id);
+	
 		if(employerById.isPresent()) {
 			Employer employer = employerById.get();
+			if(!name.equals(employer.getName())){
+				Optional<Employer> employerByNewNameWrapper = employerRepository.findByName(name);
+				if(employerByNewNameWrapper.isPresent()) {
+					return new ResponseEntity<Employer>(headers, HttpStatus.BAD_REQUEST);
+				}
+			}
 			employer.setName(name);
 			employer.setDescription(description);
 			Address address = new Address();
