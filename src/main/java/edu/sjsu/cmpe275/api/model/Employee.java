@@ -55,7 +55,7 @@ public class Employee {
 	@JoinTable(name = "COLLABORATION", joinColumns = {
 			@JoinColumn(name = "collaboratingFrom", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "collaboratingTo", referencedColumnName = "id") })
-	@JsonIgnoreProperties(value = { "manager", "reports", "address", "collaborators" })
+	@JsonIgnoreProperties(value = { "email", "manager", "reports", "address", "collaborators" })
 	private List<Employee> collaborators = new ArrayList<Employee>();
 
 	public long getId() {
