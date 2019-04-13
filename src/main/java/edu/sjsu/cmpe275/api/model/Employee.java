@@ -17,19 +17,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 //@JsonInclude(Include.NON_NULL)
 public class Employee {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	private String name;
 
-	@Column(unique=true, length=100)
+	@Column(unique = true, length = 100)
 	private String email;
 
 	private String title;
@@ -38,25 +38,25 @@ public class Employee {
 	private Address address;
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employer_id", referencedColumnName="id")
-	@JsonIgnoreProperties(value = {"address"})
-	
+	@JoinColumn(name = "employer_id", referencedColumnName = "id")
+	@JsonIgnoreProperties(value = { "address" })
+
 	private Employer employer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "manager_id")
-	@JsonIgnoreProperties(value = {"manager", "reports", "employer", "address", "collaborators"})
+	@JsonIgnoreProperties(value = { "manager", "reports", "employer", "address", "collaborators" })
 	private Employee manager;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "manager")
-	@JsonIgnoreProperties(value = {"manager", "reports", "employer", "address", "collaborators"})
+	@JsonIgnoreProperties(value = { "manager", "reports", "employer", "address", "collaborators" })
 	private List<Employee> reports = new ArrayList<Employee>();
 
 	@ManyToMany
-	@JoinTable(name="COLLABORATION",
-	joinColumns= {@JoinColumn(name="collaboratingFrom", referencedColumnName="id")},
-	inverseJoinColumns= {@JoinColumn(name="collaboratingTo", referencedColumnName="id")})
-	@JsonIgnoreProperties(value = {"manager", "reports", "address", "collaborators"})
+	@JoinTable(name = "COLLABORATION", joinColumns = {
+			@JoinColumn(name = "collaboratingFrom", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "collaboratingTo", referencedColumnName = "id") })
+	@JsonIgnoreProperties(value = { "manager", "reports", "address", "collaborators" })
 	private List<Employee> collaborators = new ArrayList<Employee>();
 
 	public long getId() {
@@ -131,4 +131,25 @@ public class Employee {
 		this.collaborators = collaborators;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 }
