@@ -26,8 +26,8 @@ public class EmployerManagementService implements IEmployerManagementService {
 	private EmployeeRepository employeeRepository;
 	
 	/**
-	 * @author Rajat
 	 * @return the employer object if found else return null
+	 *	 
 	 */
 	@Override
 	public Employer getEmployer(Long id) {

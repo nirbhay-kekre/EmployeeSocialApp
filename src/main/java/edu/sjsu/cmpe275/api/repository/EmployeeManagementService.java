@@ -25,6 +25,12 @@ public class EmployeeManagementService implements IEmployeeManagementService {
 		this.employerRepository = employerRepository;
 	}
 
+	/**
+	 * @param employee
+	 * @param employerId
+	 * @param managerId
+	 * @return
+	 */
 	@Transactional
 	public boolean updateEmployee(Employee employee, Long employerId, Long managerId) {
 		Employer prevEmployer = employee.getEmployer();
