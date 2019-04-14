@@ -19,8 +19,12 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * Employee JPA entity
+ * 
+ * @author nirbhaykekre
+ */
 @Entity
-//@JsonInclude(Include.NON_NULL)
 public class Employee {
 
 	@Id
@@ -37,20 +41,44 @@ public class Employee {
 	@Embedded
 	private Address address;
 
+	/**
+	 * Employee's employer, it is lazy fetched.<br>
+	 * <br>
+	 * JsonIgnoreProperties added to not include address and description while
+	 * accessing Employee entity
+	 */
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employer_id", referencedColumnName = "id")
 	@JsonIgnoreProperties(value = { "address", "description" })
 	private Employer employer;
 
+	/**
+	 * Employee's manager, it is lazy fetched.<br>
+	 * <br>
+	 * JsonIgnoreProperties added to not include email, manager, reports, employer,
+	 * address, collaborators while accessing Employee entity
+	 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "manager_id")
 	@JsonIgnoreProperties(value = { "email", "manager", "reports", "employer", "address", "collaborators" })
 	private Employee manager;
 
+	/**
+	 * Employee's reports, it is lazy fetched.<br>
+	 * <br>
+	 * JsonIgnoreProperties added to not include email, manager, reports, employer,
+	 * address, collaborators while accessing Employee entity
+	 */
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "manager")
 	@JsonIgnoreProperties(value = { "email", "manager", "reports", "employer", "address", "collaborators" })
 	private List<Employee> reports = new ArrayList<Employee>();
 
+	/**
+	 * Employee's collaborators, it is lazy fetched.<br>
+	 * <br>
+	 * JsonIgnoreProperties added to not include email, manager, reports, employer,
+	 * address, collaborators while accessing Employee entity
+	 */
 	@ManyToMany
 	@JoinTable(name = "COLLABORATION", joinColumns = {
 			@JoinColumn(name = "collaboratingFrom", referencedColumnName = "id") }, inverseJoinColumns = {

@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Employer JPA entity
+ * @author nirbhaykekre
+ */
 @Entity
 public class Employer {
 
