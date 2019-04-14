@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.sjsu.cmpe275.api.model.Address;
 import edu.sjsu.cmpe275.api.model.Employee;
@@ -30,6 +29,7 @@ public class EmployerManagementService implements IEmployerManagementService {
 	 *	 
 	 */
 	@Override
+	@Transactional(readOnly=true)
 	public Employer getEmployer(Long id) {
 		// TODO Auto-generated method stub
 		Optional<Employer> optionalEmployer =employerRepository.findById(id);
@@ -46,6 +46,7 @@ public class EmployerManagementService implements IEmployerManagementService {
 	 * 
 	 */
 	@Override
+	@Transactional
 	public boolean deleteEmployer(Employer employer) {
 	
 		if(employer!=null) {
@@ -67,6 +68,7 @@ public class EmployerManagementService implements IEmployerManagementService {
 	 * 
 	 */
 	@Override
+	@Transactional
 	public Employer createEmployer(String name, String description, String street, String city,
 		String state, String zip) {
 		
@@ -94,6 +96,7 @@ public class EmployerManagementService implements IEmployerManagementService {
 	}
 
 	@Override
+	@Transactional
 	public Employer updateEmployer(Long id, String name, String description, String street, String city,
 			String state, String zip, Employer employer) {
 		
