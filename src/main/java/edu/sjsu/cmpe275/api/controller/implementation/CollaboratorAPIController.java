@@ -12,7 +12,7 @@ import edu.sjsu.cmpe275.api.controller.interfaces.ICollaborationAPI;
 import edu.sjsu.cmpe275.api.model.Employee;
 import edu.sjsu.cmpe275.api.model.ResponseMessage;
 import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
-import edu.sjsu.cmpe275.api.repository.ICollaboratorManagementService;
+import edu.sjsu.cmpe275.api.service.intefaces.ICollaboratorManagementService;
 
 @Controller
 public class CollaboratorAPIController implements ICollaborationAPI {

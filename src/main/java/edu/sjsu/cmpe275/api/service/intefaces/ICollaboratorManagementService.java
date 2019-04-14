@@ -1,4 +1,4 @@
-package edu.sjsu.cmpe275.api.repository;
+package edu.sjsu.cmpe275.api.service.intefaces;
 
 import edu.sjsu.cmpe275.api.model.Employee;
 

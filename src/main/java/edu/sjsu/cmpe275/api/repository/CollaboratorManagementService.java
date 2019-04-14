@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.sjsu.cmpe275.api.model.Employee;
+import edu.sjsu.cmpe275.api.service.intefaces.ICollaboratorManagementService;
 
 @Service
 public class CollaboratorManagementService implements ICollaboratorManagementService {
