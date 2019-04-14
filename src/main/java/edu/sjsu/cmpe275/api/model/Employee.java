@@ -39,24 +39,23 @@ public class Employee {
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employer_id", referencedColumnName = "id")
-	@JsonIgnoreProperties(value = { "address" })
-
+	@JsonIgnoreProperties(value = { "address", "description" })
 	private Employer employer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "manager_id")
-	@JsonIgnoreProperties(value = { "manager", "reports", "employer", "address", "collaborators" })
+	@JsonIgnoreProperties(value = { "email", "manager", "reports", "employer", "address", "collaborators" })
 	private Employee manager;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "manager")
-	@JsonIgnoreProperties(value = { "manager", "reports", "employer", "address", "collaborators" })
+	@JsonIgnoreProperties(value = { "email", "manager", "reports", "employer", "address", "collaborators" })
 	private List<Employee> reports = new ArrayList<Employee>();
 
 	@ManyToMany
 	@JoinTable(name = "COLLABORATION", joinColumns = {
 			@JoinColumn(name = "collaboratingFrom", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "collaboratingTo", referencedColumnName = "id") })
-	@JsonIgnoreProperties(value = { "manager", "reports", "address", "collaborators" })
+	@JsonIgnoreProperties(value = { "email", "manager", "reports", "address", "collaborators" })
 	private List<Employee> collaborators = new ArrayList<Employee>();
 
 	public long getId() {

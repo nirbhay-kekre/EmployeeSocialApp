@@ -105,7 +105,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 			employee.setName(name);
 			employee.setTitle(title);
 
-			Address address = employee.getAddress();
+			Address address = new Address();
 			address.setCity(city);
 			address.setState(state);
 			address.setStreet(street);
