@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.sjsu.cmpe275.api.model.Employer;
 
+/**
+ * Employer API interface, defines request mapping for the Employer routes
+ * 
+ * @author nirbhaykekre
+ */
 public interface IEmployerAPI {
 
 	/**

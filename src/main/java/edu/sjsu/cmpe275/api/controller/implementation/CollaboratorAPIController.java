@@ -12,6 +12,11 @@ import edu.sjsu.cmpe275.api.model.ResponseMessage;
 import edu.sjsu.cmpe275.api.repository.EmployeeManagementService;
 import edu.sjsu.cmpe275.api.service.intefaces.ICollaboratorManagementService;
 
+/**
+ * Controller for Collaborator
+ * 
+ * @author nirbhaykekre
+ */
 @Controller
 public class CollaboratorAPIController implements ICollaborationAPI {
 
@@ -21,6 +26,25 @@ public class CollaboratorAPIController implements ICollaborationAPI {
 	@Autowired
 	private ICollaboratorManagementService collaboratorManagementService;
 
+	/**
+	 * This makes the two employees with the given IDs collaborators with each
+	 * other. <br>
+	 * <br>
+	 * If either employee does not exist, return 404. <br>
+	 * <br>
+	 * If the two employees are already collaborators, do nothing, just return
+	 * 200.<br>
+	 * <br>
+	 * Otherwise, Record this collaboration relation. If all is successful, return
+	 * HTTP code 200 and any informative text message in the given format in the
+	 * HTTP payload.
+	 * 
+	 * @param id1: Employee id
+	 * @param id2: Employee id
+	 * @param format: output format possible values are json or xml.
+	 * @return ResponseEntity<ResponseMessage> with response message indicating
+	 *         collaborator added
+	 */
 	@Override
 	public ResponseEntity<ResponseMessage> addCollaborator(Long id1, Long id2, String format) {
 		String type = "application/" + format.toLowerCase();
@@ -39,6 +63,23 @@ public class CollaboratorAPIController implements ICollaborationAPI {
 				new ResponseMessage("Collaborators " + id1 + ", " + id2 + " are added"), headers, HttpStatus.OK);
 	}
 
+	/**
+	 * This request removes the collaboration relation between the two employees
+	 * passed as id1 and id2.<br>
+	 * <br>
+	 * If either employee does not exist, return 404.<br>
+	 * <br>
+	 * If the two employees are not collaborators, return 404.<br>
+	 * <br>
+	 * Otherwise, Remove this collaboration relation. Return HTTP code 200 and a
+	 * meaningful text message if all is successful.
+	 * 
+	 * @param id1: Employee id
+	 * @param id2: Employee id
+	 * @param format: output format possible values are json or xml.
+	 * @return ResponseEntity<ResponseMessage> with response message indicating
+	 *         collaborator removed
+	 */
 	@Override
 	public ResponseEntity<ResponseMessage> removeCollaborator(Long id1, Long id2, String format) {
 		String type = "application/" + format.toLowerCase();
