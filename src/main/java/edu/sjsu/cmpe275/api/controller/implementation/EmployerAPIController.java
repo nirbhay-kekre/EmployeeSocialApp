@@ -138,7 +138,7 @@ public class EmployerAPIController implements IEmployerAPI {
 		Employer employer = employerService.getEmployer(id);
 
 		if (employer != null) {
-			employer = employerService.updateEmployer(id, name, description, street, city, state, zip, employer);
+			employer = employerService.updateEmployer(name, description, street, city, state, zip, employer);
 			return new ResponseEntity<Employer>(employer, headers, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Employer>(headers, HttpStatus.NOT_FOUND);

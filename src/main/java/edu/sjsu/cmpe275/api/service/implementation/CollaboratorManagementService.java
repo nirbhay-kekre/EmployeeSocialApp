@@ -1,4 +1,4 @@
-package edu.sjsu.cmpe275.api.repository;
+package edu.sjsu.cmpe275.api.service.implementation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.sjsu.cmpe275.api.model.Employee;
+import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 import edu.sjsu.cmpe275.api.service.intefaces.ICollaboratorManagementService;
 
 @Service

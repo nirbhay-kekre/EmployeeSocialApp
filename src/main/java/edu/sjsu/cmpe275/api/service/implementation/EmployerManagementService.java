@@ -24,8 +24,13 @@ public class EmployerManagementService implements IEmployerManagementService {
 	private EmployeeRepository employeeRepository;
 
 	/**
-	 * @return the employer object if found else return null
+	 * Gets Employee with the given id<br>
+	 * <br>
+	 * If Employer with employerId doesn't exist, method returns null
+	 * <br>
 	 * 
+	 * 
+	 * @return Employee, if the corresponding employee is present with the given id.
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -40,9 +45,12 @@ public class EmployerManagementService implements IEmployerManagementService {
 	}
 
 	/**
-	 * @author Yash
-	 * @return true if delete is success else false
-	 * 
+	 * Delete's the employer corresponding to the given employer object<br>
+	 * <br>
+	 * If Employer with given employer object doesn't exist, method returns false indicating
+	 * <br>
+	 * @param employer
+	 * @return boolean, true if employer is deleted successfully.
 	 */
 	@Override
 	@Transactional
@@ -63,8 +71,16 @@ public class EmployerManagementService implements IEmployerManagementService {
 	}
 
 	/**
-	 * @author Nirbhay
-	 * 
+	 * Creates Employer with the given parameters.<br>
+	 * <br>
+	 * if there exists an employer with the given name the method returns null<br>
+	 * @param name
+	 * @param description
+	 * @param street
+	 * @param city
+	 * @param state
+	 * @param zip
+	 * @return Employer, if the employer is created successfully.
 	 */
 	@Override
 	@Transactional
@@ -94,9 +110,22 @@ public class EmployerManagementService implements IEmployerManagementService {
 		return employer;
 	}
 
+	/**
+	 * Updates Employer with the given parameters, totally replacing the older values<br>
+	 * <br>
+	 * if there exists any other employer with the given name the method returns null<br>
+	 * @param name
+	 * @param description
+	 * @param street
+	 * @param city
+	 * @param state
+	 * @param zip
+	 * @param employer
+	 * @return Employer, if the employer is created successfully.
+	 */
 	@Override
 	@Transactional
-	public Employer updateEmployer(Long id, String name, String description, String street, String city, String state,
+	public Employer updateEmployer(String name, String description, String street, String city, String state,
 			String zip, Employer employer) {
 
 		if (!name.equals(employer.getName())) {

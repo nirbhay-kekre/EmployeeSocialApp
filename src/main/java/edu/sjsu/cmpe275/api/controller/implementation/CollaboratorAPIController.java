@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import edu.sjsu.cmpe275.api.controller.interfaces.ICollaborationAPI;
 import edu.sjsu.cmpe275.api.model.Employee;
 import edu.sjsu.cmpe275.api.model.ResponseMessage;
-import edu.sjsu.cmpe275.api.repository.EmployeeManagementService;
+import edu.sjsu.cmpe275.api.service.implementation.EmployeeManagementService;
 import edu.sjsu.cmpe275.api.service.intefaces.ICollaboratorManagementService;
 
 /**
