@@ -16,6 +16,13 @@ public class EmployerAPIController implements IEmployerAPI {
 	@Autowired
 	private EmployerManagementService employerService;
 
+	/**
+	 * This method looks-up an employer corresponding to the ID provided.
+	 * returns 404 if no such employer exists.
+	 * @param id: employer-id of the employer to be fetched.
+	 * @param format: JSON/XML
+	 * @return: The object of the employer in the mentioned format or error code.
+	 */
 	@Override
 	public ResponseEntity<Employer> getEmployer(Long id, String format) {
 		String type = "application/" + format.toLowerCase();
@@ -30,6 +37,14 @@ public class EmployerAPIController implements IEmployerAPI {
 		}
 	}
 
+	/**
+	 * This method deletes an employer corresponding to the ID provided.
+	 * returns 404 if no employer corresponding to the ID is found.
+	 * returns 400 if the employer has any employees.
+	 * @param id: employer-id of the employer to be deleted.
+	 * @param format: JSON/XML
+	 * @return: The object of the deleted employer in the mentioned format or error code.
+	 */
 	@Override
 	public ResponseEntity<Employer> deleteEmployer(Long id, String format) {
 		String type = "application/" + format.toLowerCase();
@@ -50,6 +65,19 @@ public class EmployerAPIController implements IEmployerAPI {
 
 	}
 
+	/**
+	 * This method creates an employer entry.
+	 * returns 400 if an employer with the same name already exists.
+	 * returns 400 if employer's name is not mentioned in the query.
+	 * @param name: Name of the employer.
+	 * @param description: Details related to a particular employer.
+	 * @param street: street on which the employer is present.
+	 * @param city: city on which the employer is present.
+	 * @param state: state on which the employer is present.
+	 * @param zip: ZIP code of the employer.
+	 * @param format: JSON/XML
+	 * @return: Object of the created employer or error code.
+	 */
 	@Override
 	public ResponseEntity<Employer> createEmployer(String name, String description, String street, String city,
 			String state, String zip, String format) {
@@ -66,7 +94,23 @@ public class EmployerAPIController implements IEmployerAPI {
 		return new ResponseEntity<Employer>(employer, headers, HttpStatus.OK);
 
 	}
-
+	
+	
+	/**
+	 * This method will edit an employer corresponding to the ID provided.
+	 * returns 404 if an employer corresponding to the ID is not found.
+	 * returns 400 if name provided is not unique or belongs to another employer.
+	 * returns 400 if the name is not provided in the query. 
+	 * @param id: ID of the employer to be edited.
+	 * @param name: Name of the employer.
+	 * @param description: Details related to a particular employer.
+	 * @param street: street on which the employer is present.
+	 * @param city: city on which the employer is present.
+	 * @param state: state on which the employer is present.
+	 * @param zip: ZIP code of the employer.
+	 * @param format: JSON/XML
+	 * @return: The object of the edited employer or error code. 
+	 */
 	@Override
 	public ResponseEntity<Employer> updateEmployer(Long id, String name, String description, String street, String city,
 			String state, String zip, String format) {
