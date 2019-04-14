@@ -5,6 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 
+/**
+ * Spring boot starter class for the Employee Social App.
+ * @author nirbhaykekre
+ */
 @SpringBootApplication
 @ComponentScan(basePackages = { "edu.sjsu.cmpe275" })
 public class App {
