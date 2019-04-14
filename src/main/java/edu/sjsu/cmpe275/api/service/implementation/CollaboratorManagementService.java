@@ -21,6 +21,12 @@ public class CollaboratorManagementService implements ICollaboratorManagementSer
 		this.employeeRepository = employeeRepository;
 	}
 
+	/**
+	 * Makes given employee1 and employee2 collaborator
+	 * 
+	 * @param employee1 employee instance
+	 * @param employee2 employee instance
+	 */
 	@Override
 	@Transactional
 	public void addCollaborator(Employee employee1, Employee employee2) {
@@ -45,6 +51,13 @@ public class CollaboratorManagementService implements ICollaboratorManagementSer
 		}
 	}
 
+	/**
+	 * Removes given employee1 and employee2 collaboration.
+	 * 
+	 * @param employee1 employee instance
+	 * @param employee2 employee instance
+	 * @return boolean, returns true if success
+	 */
 	@Override
 	@Transactional
 	public boolean removeCollaborator(Employee employee1, Employee employee2) {

@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import edu.sjsu.cmpe275.api.controller.interfaces.IEmployeeAPI;
-import edu.sjsu.cmpe275.api.model.Address;
 import edu.sjsu.cmpe275.api.model.Employee;
 import edu.sjsu.cmpe275.api.service.intefaces.IEmployeeManagementService;
 import edu.sjsu.cmpe275.utils.EmployeeUtils;
@@ -198,18 +197,9 @@ public class EmployeeAPIController implements IEmployeeAPI {
 				if (employeeByMail == null) {
 					return new ResponseEntity<Employee>(headers, HttpStatus.BAD_REQUEST);
 				}
-				employee.setEmail(email);
 			}
-			employee.setName(name);
-			employee.setTitle(title);
-			Address address = new Address();
-			address.setCity(city);
-			address.setState(state);
-			address.setStreet(street);
-			address.setZip(zip);
-			employee.setAddress(address);
-
-			if (!employeeManagementService.updateEmployee(employee, employerId, managerId)) {
+			if (!employeeManagementService.updateEmployee(employee, name, email, title, street, city, state, zip,
+					employerId, managerId)) {
 				return new ResponseEntity<Employee>(headers, HttpStatus.BAD_REQUEST);
 			}
 			EmployeeUtils.fetchLazyAttributeFromEmployee(employee);

@@ -13,7 +13,7 @@ import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 public class EmployeeUtils {
 
 	/**
-	 * Assigns Manager with managerId to employee.<br>
+	 * Assigns Manager with managerId to an employee.<br>
 	 * <br>
 	 * If managerId is null, method returns true.<br>
 	 * If Manager with managerId doesn't exist, method returns false indicating
