@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import edu.sjsu.cmpe275.api.controller.interfaces.ICollaborationAPI;
 import edu.sjsu.cmpe275.api.model.Employee;
 import edu.sjsu.cmpe275.api.model.ResponseMessage;
+import edu.sjsu.cmpe275.api.repository.EmployeeManagementService;
 import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 import edu.sjsu.cmpe275.api.service.intefaces.ICollaboratorManagementService;
 
@@ -18,7 +19,7 @@ import edu.sjsu.cmpe275.api.service.intefaces.ICollaboratorManagementService;
 public class CollaboratorAPIController implements ICollaborationAPI {
 
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private EmployeeManagementService employeeService;
 
 	@Autowired
 	private ICollaboratorManagementService collaboratorManagementService;
@@ -29,14 +30,12 @@ public class CollaboratorAPIController implements ICollaborationAPI {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", type + "; charset=UTF-8");
 
-		Optional<Employee> employeeById1 = employeeRepository.findById(id1);
-		Optional<Employee> employeeById2 = employeeRepository.findById(id2);
-		if (!employeeById1.isPresent() || !employeeById2.isPresent()) {
+		Employee employee1 = employeeService.getEmployee(id1);
+		Employee employee2 = employeeService.getEmployee(id2);
+		if (employee1==null || employee2==null) {
 			return new ResponseEntity<ResponseMessage>(headers, HttpStatus.NOT_FOUND);
 		}
-		Employee employee1 = employeeById1.get();
-		Employee employee2 = employeeById2.get();
-
+		
 		collaboratorManagementService.addCollaborator(employee1, employee2);
 
 		return new ResponseEntity<ResponseMessage>(
@@ -49,13 +48,11 @@ public class CollaboratorAPIController implements ICollaborationAPI {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", type + "; charset=UTF-8");
 
-		Optional<Employee> employeeById1 = employeeRepository.findById(id1);
-		Optional<Employee> employeeById2 = employeeRepository.findById(id2);
-		if (!employeeById1.isPresent() || !employeeById2.isPresent()) {
+		Employee employee1 = employeeService.getEmployee(id1);
+		Employee employee2 = employeeService.getEmployee(id2);
+		if (employee1==null || employee2==null) {
 			return new ResponseEntity<ResponseMessage>(headers, HttpStatus.NOT_FOUND);
 		}
-		Employee employee1 = employeeById1.get();
-		Employee employee2 = employeeById2.get();
 
 		if (!collaboratorManagementService.removeCollaborator(employee1, employee2)) {
 			return new ResponseEntity<ResponseMessage>(headers, HttpStatus.NOT_FOUND);

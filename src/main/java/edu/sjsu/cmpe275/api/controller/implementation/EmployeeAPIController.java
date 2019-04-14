@@ -31,12 +31,9 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	@Override
 	public ResponseEntity<Employee> getEmployee(Long id, String format) {
 		HttpHeaders headers = httpResponseHeaderSetup(format);
-		Optional<Employee> employeeWrapper = employeeRepository.findById(id);
-		if (employeeWrapper.isPresent()) {
-			Employee employee = employeeWrapper.get();
-			EmployeeUtils.fetchLazyAttributeFromEmployee(employee);
+		Employee employee = employeeManagementService.getEmployee(id);
+		if (employee!=null) {
 			return new ResponseEntity<Employee>(employee, headers, HttpStatus.OK);
-
 		} else {
 			return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);
 		}
@@ -63,24 +60,12 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	public ResponseEntity<Employee> createEmployee(String name, String email, String title, String street, String city,
 			String state, String zip, Long employerId, Long managerId, String format) {
 		HttpHeaders headers = httpResponseHeaderSetup(format);
-		Optional<Employee> employeeByMail = employeeRepository.findByEmail(email);
-		Employee employee = new Employee();
-
-		if (employeeByMail.isPresent() || !EmployerUtils.assignEmployer(employerRepository, employerId, employee)
-				|| !EmployeeUtils.assignManager(employeeRepository, managerId, employee)) {
+		
+		Employee employee=employeeManagementService.createEmployee(name,email,title,street,city,state,zip,employerId,managerId);
+		if(employee==null) {
 			return new ResponseEntity<Employee>(headers, HttpStatus.BAD_REQUEST);
 		}
-		employee.setName(name);
-		employee.setEmail(email);
-		employee.setTitle(title);
-		Address addr = new Address();
-		addr.setStreet(street);
-		addr.setCity(city);
-		addr.setState(state);
-		addr.setZip(zip);
-		employee.setAddress(addr);
-		employeeRepository.save(employee);
-
+			
 		return new ResponseEntity<Employee>(employee, headers, HttpStatus.OK);
 	}
 
@@ -110,6 +95,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 			address.setState(state);
 			address.setStreet(street);
 			address.setZip(zip);
+			employee.setAddress(address);
 
 			if(!employeeManagementService.updateEmployee(employee, employerId, managerId)) {
 				return new ResponseEntity<Employee>(headers, HttpStatus.BAD_REQUEST);
