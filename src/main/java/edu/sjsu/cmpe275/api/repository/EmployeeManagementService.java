@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.sjsu.cmpe275.api.model.Employee;
 import edu.sjsu.cmpe275.api.model.Employer;
+import edu.sjsu.cmpe275.api.service.intefaces.IEmployeeManagementService;
 import edu.sjsu.cmpe275.utils.EmployeeUtils;
 import edu.sjsu.cmpe275.utils.EmployerUtils;
 
@@ -24,6 +25,12 @@ public class EmployeeManagementService implements IEmployeeManagementService {
 		this.employerRepository = employerRepository;
 	}
 
+	/**
+	 * @param employee
+	 * @param employerId
+	 * @param managerId
+	 * @return
+	 */
 	@Transactional
 	public boolean updateEmployee(Employee employee, Long employerId, Long managerId) {
 		Employer prevEmployer = employee.getEmployer();

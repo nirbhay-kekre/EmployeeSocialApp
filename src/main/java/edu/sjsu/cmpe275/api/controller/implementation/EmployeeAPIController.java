@@ -13,7 +13,7 @@ import edu.sjsu.cmpe275.api.model.Address;
 import edu.sjsu.cmpe275.api.model.Employee;
 import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 import edu.sjsu.cmpe275.api.repository.EmployerRepository;
-import edu.sjsu.cmpe275.api.repository.IEmployeeManagementService;
+import edu.sjsu.cmpe275.api.service.intefaces.IEmployeeManagementService;
 import edu.sjsu.cmpe275.utils.EmployeeUtils;
 import edu.sjsu.cmpe275.utils.EmployerUtils;
 
