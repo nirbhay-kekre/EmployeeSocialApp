@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +33,7 @@ public class EmployeeManagementService implements IEmployeeManagementService {
 	 * @param managerId
 	 * @return
 	 */
+	@Override
 	@Transactional
 	public boolean updateEmployee(Employee employee, Long employerId, Long managerId) {
 		Employer prevEmployer = employee.getEmployer();
@@ -62,11 +61,12 @@ public class EmployeeManagementService implements IEmployeeManagementService {
 		return true;
 	}
 
+	@Override
 	@Transactional
 	public boolean deleteEmployee(Employee employee) {
 		if (employee.getReports() == null || employee.getReports().isEmpty()) {
 			EmployeeUtils.fetchLazyAttributeFromEmployee(employee);
-			for(Employee collaborator : employee.getCollaborators()) {
+			for (Employee collaborator : employee.getCollaborators()) {
 				collaborator.getCollaborators().remove(employee);
 				employeeRepository.save(collaborator);
 			}
@@ -76,8 +76,9 @@ public class EmployeeManagementService implements IEmployeeManagementService {
 			return false;
 		}
 	}
-	
-	@Transactional(readOnly=true)
+
+	@Override
+	@Transactional(readOnly = true)
 	public Employee getEmployee(Long employeeId) {
 		Optional<Employee> employeeWrapper = employeeRepository.findById(employeeId);
 		if (employeeWrapper.isPresent()) {
@@ -89,11 +90,12 @@ public class EmployeeManagementService implements IEmployeeManagementService {
 			return null;
 		}
 	}
-	
+
+	@Override
 	@Transactional
-	public Employee createEmployee(String name, String email, String title, String street, String city,
-			String state, String zip, Long employerId, Long managerId) {
-		
+	public Employee createEmployee(String name, String email, String title, String street, String city, String state,
+			String zip, Long employerId, Long managerId) {
+
 		Employee employee = new Employee();
 		Optional<Employee> employeeByMail = employeeRepository.findByEmail(email);
 		if (employeeByMail.isPresent() || !EmployerUtils.assignEmployer(employerRepository, employerId, employee)
@@ -110,7 +112,16 @@ public class EmployeeManagementService implements IEmployeeManagementService {
 		addr.setZip(zip);
 		employee.setAddress(addr);
 		return employeeRepository.save(employee);
-		
+
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Employee getEmployeeByEmail(String email) {
+		Optional<Employee> employeeByMail = employeeRepository.findByEmail(email);
+		if (employeeByMail.isPresent()) {
+			return employeeByMail.get();
+		}
+		return null;
+	}
 }

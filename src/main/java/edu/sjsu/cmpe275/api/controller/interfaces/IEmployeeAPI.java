@@ -112,7 +112,8 @@ public interface IEmployeeAPI {
 	 * 
 	 * @return Employee
 	 */
-	@RequestMapping(value = "/employee", produces = { "application/xml", "application/json" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/employee", produces = { "application/xml",
+			"application/json" }, method = RequestMethod.POST)
 	ResponseEntity<Employee> createEmployee(@RequestParam(value = "name", required = true) String name,
 			@RequestParam(value = "email", required = true) String email,
 			@RequestParam(value = "title", required = false) String title,
@@ -158,7 +159,8 @@ public interface IEmployeeAPI {
 	 * @param format
 	 * @return
 	 */
-	@RequestMapping(value = "/employee/{id}", produces = { "application/xml", "application/json" }, method = RequestMethod.PUT)
+	@RequestMapping(value = "/employee/{id}", produces = { "application/xml",
+			"application/json" }, method = RequestMethod.PUT)
 	ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id", required = true) Long id,
 			@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "email", required = true) String email,

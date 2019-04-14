@@ -14,30 +14,29 @@ import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 import edu.sjsu.cmpe275.api.repository.EmployerRepository;
 import edu.sjsu.cmpe275.api.service.intefaces.IEmployerManagementService;
 
-
 @Service
 public class EmployerManagementService implements IEmployerManagementService {
 
 	@Autowired
 	private EmployerRepository employerRepository;
-	
+
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
+
 	/**
 	 * @return the employer object if found else return null
-	 *	 
+	 * 
 	 */
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public Employer getEmployer(Long id) {
 		// TODO Auto-generated method stub
-		Optional<Employer> optionalEmployer =employerRepository.findById(id);
+		Optional<Employer> optionalEmployer = employerRepository.findById(id);
 		if (optionalEmployer.isPresent()) {
 			return optionalEmployer.get();
-		}
-		else return null;
-		
+		} else
+			return null;
+
 	}
 
 	/**
@@ -48,17 +47,17 @@ public class EmployerManagementService implements IEmployerManagementService {
 	@Override
 	@Transactional
 	public boolean deleteEmployer(Employer employer) {
-	
-		if(employer!=null) {
+
+		if (employer != null) {
 			List<Employee> employeesByEmployers = employeeRepository.findByEmployer(employer);
-			if(employeesByEmployers.isEmpty()) {
+			if (employeesByEmployers.isEmpty()) {
 				employerRepository.deleteById(employer.getId());
 				return true;
-			
-			}else {
+
+			} else {
 				return false;
 			}
-			
+
 		}
 		return false;
 	}
@@ -69,18 +68,18 @@ public class EmployerManagementService implements IEmployerManagementService {
 	 */
 	@Override
 	@Transactional
-	public Employer createEmployer(String name, String description, String street, String city,
-		String state, String zip) {
-		
-		if(name == null){
+	public Employer createEmployer(String name, String description, String street, String city, String state,
+			String zip) {
+
+		if (name == null) {
 			return null;
 		}
-		
+
 		Optional<Employer> employerWrapper = employerRepository.findByName(name);
-		if(employerWrapper.isPresent()){
-			return null; 
+		if (employerWrapper.isPresent()) {
+			return null;
 		}
-		
+
 		Employer employer = new Employer();
 		employer.setName(name);
 		employer.setDescription(description);
@@ -90,19 +89,19 @@ public class EmployerManagementService implements IEmployerManagementService {
 		address.setStreet(street);
 		address.setZip(zip);
 		employer.setAddress(address);
-		
-		employer=employerRepository.save(employer);
+
+		employer = employerRepository.save(employer);
 		return employer;
 	}
 
 	@Override
 	@Transactional
-	public Employer updateEmployer(Long id, String name, String description, String street, String city,
-			String state, String zip, Employer employer) {
-		
-		if(!name.equals(employer.getName())){
+	public Employer updateEmployer(Long id, String name, String description, String street, String city, String state,
+			String zip, Employer employer) {
+
+		if (!name.equals(employer.getName())) {
 			Optional<Employer> employerByNewNameWrapper = employerRepository.findByName(name);
-			if(employerByNewNameWrapper.isPresent()) {
+			if (employerByNewNameWrapper.isPresent()) {
 				return null;
 			}
 		}
@@ -114,7 +113,7 @@ public class EmployerManagementService implements IEmployerManagementService {
 		address.setState(state);
 		address.setZip(zip);
 		employer.setAddress(address);
-		employer=employerRepository.save(employer);
+		employer = employerRepository.save(employer);
 		return employer;
 	}
 

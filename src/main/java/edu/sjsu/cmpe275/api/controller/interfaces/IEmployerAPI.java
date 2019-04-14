@@ -11,10 +11,10 @@ import edu.sjsu.cmpe275.api.model.Employer;
 
 public interface IEmployerAPI {
 
-	
 	/**
-	 * This method looks-up an employer corresponding to the ID provided.
-	 * returns 404 if no such employer exists.
+	 * This method looks-up an employer corresponding to the ID provided. returns
+	 * 404 if no such employer exists.
+	 * 
 	 * @param id: employer-id of the employer to be fetched.
 	 * @param format: JSON/XML
 	 * @return: The object of the employer in the mentioned format or error code.
@@ -25,24 +25,25 @@ public interface IEmployerAPI {
 			@RequestParam(value = "format", defaultValue = "json", required = false) String format);
 
 	/**
-	 * This method deletes an employer corresponding to the ID provided.
-	 * returns 404 if no employer corresponding to the ID is found.
-	 * returns 400 if the employer has any employees.
+	 * This method deletes an employer corresponding to the ID provided. returns 404
+	 * if no employer corresponding to the ID is found. returns 400 if the employer
+	 * has any employees.
+	 * 
 	 * @param id: employer-id of the employer to be deleted.
 	 * @param format: JSON/XML
-	 * @return: The object of the deleted employer in the mentioned format or error code.
+	 * @return: The object of the deleted employer in the mentioned format or error
+	 *          code.
 	 */
 	@RequestMapping(value = "/employer/{id}", produces = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.DELETE)
 	ResponseEntity<Employer> deleteEmployer(@PathVariable(value = "id", required = true) Long id,
 			@RequestParam(value = "format", defaultValue = "json", required = false) String format);
 
-	
-	
 	/**
-	 * This method creates an employer entry.
-	 * returns 400 if an employer with the same name already exists.
-	 * returns 400 if employer's name is not mentioned in the query.
+	 * This method creates an employer entry. returns 400 if an employer with the
+	 * same name already exists. returns 400 if employer's name is not mentioned in
+	 * the query.
+	 * 
 	 * @param name: Name of the employer.
 	 * @param description: Details related to a particular employer.
 	 * @param street: street on which the employer is present.
@@ -63,10 +64,11 @@ public interface IEmployerAPI {
 			@RequestParam(value = "format", defaultValue = "json", required = false) String format);
 
 	/**
-	 * This method will edit an employer corresponding to the ID provided.
-	 * returns 404 if an employer corresponding to the ID is not found.
-	 * returns 400 if name provided is not unique or belongs to another employer.
-	 * returns 400 if the name is not provided in the query. 
+	 * This method will edit an employer corresponding to the ID provided. returns
+	 * 404 if an employer corresponding to the ID is not found. returns 400 if name
+	 * provided is not unique or belongs to another employer. returns 400 if the
+	 * name is not provided in the query.
+	 * 
 	 * @param id: ID of the employer to be edited.
 	 * @param name: Name of the employer.
 	 * @param description: Details related to a particular employer.
@@ -75,7 +77,7 @@ public interface IEmployerAPI {
 	 * @param state: state on which the employer is present.
 	 * @param zip: ZIP code of the employer.
 	 * @param format: JSON/XML
-	 * @return: The object of the edited employer or error code. 
+	 * @return: The object of the edited employer or error code.
 	 */
 	@RequestMapping(value = "/employer/{id}", produces = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.PUT)

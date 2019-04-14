@@ -1,7 +1,5 @@
 package edu.sjsu.cmpe275.api.controller.implementation;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,7 +10,6 @@ import edu.sjsu.cmpe275.api.controller.interfaces.ICollaborationAPI;
 import edu.sjsu.cmpe275.api.model.Employee;
 import edu.sjsu.cmpe275.api.model.ResponseMessage;
 import edu.sjsu.cmpe275.api.repository.EmployeeManagementService;
-import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 import edu.sjsu.cmpe275.api.service.intefaces.ICollaboratorManagementService;
 
 @Controller
@@ -32,10 +29,10 @@ public class CollaboratorAPIController implements ICollaborationAPI {
 
 		Employee employee1 = employeeService.getEmployee(id1);
 		Employee employee2 = employeeService.getEmployee(id2);
-		if (employee1==null || employee2==null) {
+		if (employee1 == null || employee2 == null) {
 			return new ResponseEntity<ResponseMessage>(headers, HttpStatus.NOT_FOUND);
 		}
-		
+
 		collaboratorManagementService.addCollaborator(employee1, employee2);
 
 		return new ResponseEntity<ResponseMessage>(
@@ -50,7 +47,7 @@ public class CollaboratorAPIController implements ICollaborationAPI {
 
 		Employee employee1 = employeeService.getEmployee(id1);
 		Employee employee2 = employeeService.getEmployee(id2);
-		if (employee1==null || employee2==null) {
+		if (employee1 == null || employee2 == null) {
 			return new ResponseEntity<ResponseMessage>(headers, HttpStatus.NOT_FOUND);
 		}
 

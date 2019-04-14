@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 /**
  * Employer JPA entity
+ * 
  * @author nirbhaykekre
  */
 @Entity

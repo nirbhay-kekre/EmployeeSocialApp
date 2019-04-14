@@ -15,5 +15,5 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
 	@Transactional(readOnly = true)
 	List<Employee> findByEmployer(Employer employer);
-	
+
 }

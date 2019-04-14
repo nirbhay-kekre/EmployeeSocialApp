@@ -16,7 +16,7 @@ import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
  */
 @Component
 public class CustomMapperConfig {
-	
+
 	/**
 	 * registers Hibernate5Module in the object mapper, so that serialization of
 	 * entity object won't invoke Lazy loaded entities
