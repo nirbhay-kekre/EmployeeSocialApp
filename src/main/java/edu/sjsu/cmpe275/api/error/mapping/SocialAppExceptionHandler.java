@@ -18,11 +18,11 @@ public class SocialAppExceptionHandler extends ResponseEntityExceptionHandler {
 	/**
 	 * handleMissingServeletRequestParameter
 	 * 
-	 * @param ex
-	 * @param headers
-	 * @param status
-	 * @param request
-	 * @return
+	 * @param ex MissingServletRequestParameterException
+	 * @param headers HttpHeaders
+	 * @param status HttpStatus
+	 * @param request WebRequest
+	 * @return ResponseEntity, with Bad request
 	 */
 	protected ResponseEntity<Object> handleMissingServeletRequestParameter(MissingServletRequestParameterException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
