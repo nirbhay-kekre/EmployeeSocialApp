@@ -4,7 +4,7 @@ import javax.persistence.Embeddable;
 
 /**
  * Address JPA entity
- * 
+ *
  * @author nirbhaykekre
  */
 @Embeddable

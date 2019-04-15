@@ -10,7 +10,7 @@ import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 
 /**
  * Jackson ObjectMapper configuration class for json and xml
- * 
+ *
  * @author nirbhaykekre
  *
  */
@@ -20,7 +20,7 @@ public class CustomMapperConfig {
 	/**
 	 * registers Hibernate5Module in the object mapper, so that serialization of
 	 * entity object won't invoke Lazy loaded entities
-	 * 
+	 *
 	 * @param mapper       instance of json ObjectMapper
 	 * @param xmlConverter instance of xml MappingJackson2XmlHttpMessageConverter
 	 */

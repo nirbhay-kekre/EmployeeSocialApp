@@ -2,6 +2,11 @@ package edu.sjsu.cmpe275.api.service.intefaces;
 
 import edu.sjsu.cmpe275.api.model.Employee;
 
+/**
+ * Employee Management Service interface
+ *
+ * @author nirbhaykekre
+ */
 public interface IEmployeeManagementService {
 
 	/**
@@ -15,7 +20,7 @@ public interface IEmployeeManagementService {
 	 * changed to not have a manager.<br>
 	 * This person’s new manager (changed through the managerId parameter) must
 	 * belong to the new company as well, or does not have a new manager.
-	 * 
+	 *
 	 * @param employee   Target employee object
 	 * @param name       name to be updated
 	 * @param email      email to be updated, must be unique
@@ -33,7 +38,7 @@ public interface IEmployeeManagementService {
 
 	/**
 	 * Deletes the given employee, if the employee has no reports.
-	 * 
+	 *
 	 * @param employee
 	 * @return boolean, true if delete is successful
 	 */
@@ -42,7 +47,7 @@ public interface IEmployeeManagementService {
 	/**
 	 * Gets Employee object from the repository for the given employeeId, this
 	 * method returns null if employee does not exist
-	 * 
+	 *
 	 * @param employeeId target employee id
 	 * @return Employee object, returns null if employee does not exist
 	 */
@@ -50,7 +55,7 @@ public interface IEmployeeManagementService {
 
 	/**
 	 * Creates and stores the new employee into the repository
-	 * 
+	 *
 	 * @param employee   Target employee object
 	 * @param name       name to be updated
 	 * @param email      email to be updated, must be unique
@@ -69,7 +74,7 @@ public interface IEmployeeManagementService {
 	/**
 	 * Gets Employee object from the repository for the given email, this method
 	 * returns null if employee does not exist
-	 * 
+	 *
 	 * @param email target employee email
 	 * @return Employee object, returns null if employee does not exist
 	 */

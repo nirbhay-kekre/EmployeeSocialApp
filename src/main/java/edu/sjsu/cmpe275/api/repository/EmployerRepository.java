@@ -9,14 +9,14 @@ import edu.sjsu.cmpe275.api.model.Employer;
 
 /**
  * CRUD repository for employer, all methods are transactional by default.
- * 
+ *
  * @author nirbhaykekre
  */
 public interface EmployerRepository extends CrudRepository<Employer, Long> {
 
 	/**
 	 * Transactional method for retrieving Employer by name
-	 * 
+	 *
 	 * @param name name of the employer
 	 * @return Employer object wrapped in Optional
 	 */

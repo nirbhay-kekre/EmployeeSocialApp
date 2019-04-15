@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Spring boot starter class for the Employee Social App.
- * 
+ *
  * @author nirbhaykekre
  */
 @SpringBootApplication

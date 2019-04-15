@@ -11,6 +11,11 @@ import edu.sjsu.cmpe275.api.model.Employee;
 import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 import edu.sjsu.cmpe275.api.service.intefaces.ICollaboratorManagementService;
 
+/**
+ * Collaborator Services
+ *
+ * @author nirbhaykekre
+ */
 @Service
 public class CollaboratorManagementService implements ICollaboratorManagementService {
 
@@ -23,7 +28,7 @@ public class CollaboratorManagementService implements ICollaboratorManagementSer
 
 	/**
 	 * Makes given employee1 and employee2 collaborator
-	 * 
+	 *
 	 * @param employee1 employee instance
 	 * @param employee2 employee instance
 	 */
@@ -53,7 +58,7 @@ public class CollaboratorManagementService implements ICollaboratorManagementSer
 
 	/**
 	 * Removes given employee1 and employee2 collaboration.
-	 * 
+	 *
 	 * @param employee1 employee instance
 	 * @param employee2 employee instance
 	 * @return boolean, returns true if success

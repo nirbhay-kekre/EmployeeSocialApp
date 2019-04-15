@@ -8,7 +8,7 @@ import edu.sjsu.cmpe275.api.repository.EmployerRepository;
 
 /**
  * Employer utilities
- * 
+ *
  * @author nirbhaykekre
  */
 public class EmployerUtils {
@@ -23,7 +23,7 @@ public class EmployerUtils {
 	 * <br>
 	 * <b>Note: this utility won't save employee into database, all changes are
 	 * in-memory</b>
-	 * 
+	 *
 	 * @param employerRepository CRUD repository for employer
 	 * @param employerId         employer Id to be assigned
 	 * @param employee           target employee object

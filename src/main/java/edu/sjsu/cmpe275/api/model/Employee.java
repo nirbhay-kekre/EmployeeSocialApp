@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Employee JPA entity
- * 
+ *
  * @author nirbhaykekre
  */
 @Entity

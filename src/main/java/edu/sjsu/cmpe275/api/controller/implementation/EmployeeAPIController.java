@@ -13,7 +13,7 @@ import edu.sjsu.cmpe275.utils.EmployeeUtils;
 
 /**
  * Controller for Employee
- * 
+ *
  * @author nirbhaykekre
  */
 @Controller
@@ -34,7 +34,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	 * and name.<br>
 	 * If the employee of the given user ID does not exist, the HTTP return code
 	 * should be 404; 400 for other error, or 200 if successful.
-	 * 
+	 *
 	 * @param id     Employee id
 	 * @param format output format possible values are json or xml.
 	 * @return ResponseEntity<Employee>
@@ -65,8 +65,8 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	 * format, with all values prior to the deletion.<br>
 	 * Please follow the JSON format given above; i.e., all the fields, if present,
 	 * are required.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param id     Employee id
 	 * @param format output format possible values are json or xml.
 	 * @return ResponseEntity<Employee>
@@ -102,14 +102,14 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	 * The employer’s ID must be specified using the employerId query parameter. The
 	 * employer entity must be created before creating this employee.<br>
 	 * <br>
-	 * 
+	 *
 	 * If the request is invalid, e.g., missing required parameters, the HTTP status
 	 * code should be 400; otherwise 200.The request returns the newly created
 	 * employee object in the requested format in its HTTP payload, including all
 	 * attributes.<br>
 	 * For employer, only include the ID and name attributes.<br>
 	 * For manager, only include the ID, name, and title attributes.
-	 * 
+	 *
 	 * @param name       name of the employee
 	 * @param email      email of the employee, must be unique
 	 * @param title      title of the employee
@@ -120,7 +120,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	 * @param employerId employer id of the employee, required
 	 * @param managerId  Manager id of the employee
 	 * @param format     output format possible values are json or xml.
-	 * 
+	 *
 	 * @return ResponseEntity<Employee>
 	 */
 	@Override
@@ -166,9 +166,9 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	 * returned. If required parameters are missing or run into other errors, return
 	 * 400 instead. Otherwise, return 200. It is not allowed to directly change a
 	 * person’s reports. Please follow the sample JSON given above.
-	 * 
+	 *
 	 * <b>NOTE: This method completely replaces the object in the DB </b>
-	 * 
+	 *
 	 * @param id         id of the employee to be updated.
 	 * @param name       name of the employee
 	 * @param email      email of the employee, must be unique
@@ -212,7 +212,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 
 	/**
 	 * Creates httpHeader based on give format
-	 * 
+	 *
 	 * @param format json/xml
 	 * @return HttpHeader with appropriate format
 	 */

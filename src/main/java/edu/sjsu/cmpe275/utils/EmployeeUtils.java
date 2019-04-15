@@ -7,7 +7,7 @@ import edu.sjsu.cmpe275.api.repository.EmployeeRepository;
 
 /**
  * Employee Utilities
- * 
+ *
  * @author nirbhaykekre
  */
 public class EmployeeUtils {
@@ -22,10 +22,10 @@ public class EmployeeUtils {
 	 * indicating failure<br>
 	 * otherwise, assigns the manager and returns true.<br>
 	 * <br>
-	 * 
+	 *
 	 * <b>Note: this utility won't save employee into database, all changes are
 	 * in-memory</b>
-	 * 
+	 *
 	 * @param employeeRepository CRUD repository for employee
 	 * @param managerId          Manager id to be assigned to employee
 	 * @param employee           Target employee
@@ -51,7 +51,7 @@ public class EmployeeUtils {
 
 	/**
 	 * Fetches all the lazy attributes of current employee
-	 * 
+	 *
 	 * @param employee target employee
 	 */
 	public static void fetchLazyAttributeFromEmployee(Employee employee) {
