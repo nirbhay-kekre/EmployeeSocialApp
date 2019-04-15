@@ -31,7 +31,7 @@ public interface IEmployeeAPI {
 	 *
 	 * @param id     Employee id
 	 * @param format output format possible values are json or xml.
-	 * @return ResponseEntity<Employee>
+	 * @return ResponseEntity
 	 */
 	@RequestMapping(value = "/employee/{id}", produces = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE }, method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public interface IEmployeeAPI {
 	 *
 	 * @param id     Employee id
 	 * @param format output format possible values are json or xml.
-	 * @return ResponseEntity<Employee>
+	 * @return ResponseEntity
 	 */
 	@RequestMapping(value = "/employee/{id}", produces = { "application/xml",
 			"application/json" }, method = RequestMethod.DELETE)
@@ -98,7 +98,7 @@ public interface IEmployeeAPI {
 	 * @param managerId  Manager id of the employee
 	 * @param format     output format possible values are json or xml.
 	 *
-	 * @return ResponseEntity<Employee>
+	 * @return ResponseEntity
 	 */
 	@RequestMapping(value = "/employee", produces = { "application/xml",
 			"application/json" }, method = RequestMethod.POST)
@@ -156,7 +156,7 @@ public interface IEmployeeAPI {
 	 * @param employerId employer id of the employee, required
 	 * @param managerId  Manager id of the employee
 	 * @param format     output format possible values are json or xml.
-	 * @return ResponseEntity<Employee>
+	 * @return ResponseEntity
 	 */
 	@RequestMapping(value = "/employee/{id}", produces = { "application/xml",
 			"application/json" }, method = RequestMethod.PUT)

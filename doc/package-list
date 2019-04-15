@@ -1,0 +1,8 @@
+edu.sjsu.cmpe275
+edu.sjsu.cmpe275.api.controller.implementation
+edu.sjsu.cmpe275.api.controller.interfaces
+edu.sjsu.cmpe275.api.model
+edu.sjsu.cmpe275.api.repository
+edu.sjsu.cmpe275.api.service.implementation
+edu.sjsu.cmpe275.api.service.intefaces
+edu.sjsu.cmpe275.utils
