@@ -172,10 +172,10 @@ public class Employee {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Employee))
 			return false;
 		Employee other = (Employee) obj;
-		if (id != other.id)
+		if (id != other.getId())
 			return false;
 		return true;
 	}
