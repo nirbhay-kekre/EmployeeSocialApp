@@ -194,7 +194,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 		if (employee != null) {
 			if (!email.equals(employee.getEmail())) {
 				Employee employeeByMail = employeeManagementService.getEmployeeByEmail(email);
-				if (employeeByMail == null) {
+				if (employeeByMail != null) {
 					return new ResponseEntity<Employee>(headers, HttpStatus.BAD_REQUEST);
 				}
 			}
