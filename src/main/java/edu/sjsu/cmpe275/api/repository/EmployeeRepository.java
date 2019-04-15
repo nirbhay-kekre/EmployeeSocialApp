@@ -19,7 +19,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 	/**
 	 * Transactional method for retrieving Employee by email
 	 *
-	 * @param name name of the employer
+	 * @param email email of the employer
 	 * @return Employee object wrapped in Optional
 	 */
 	@Transactional(readOnly = true)
@@ -28,7 +28,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 	/**
 	 * Transactional method for retrieving all employees by employer
 	 *
-	 * @param name name of the employer
+	 * @param employer employer object
 	 * @return list of Employee
 	 */
 	@Transactional(readOnly = true)

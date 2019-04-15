@@ -37,7 +37,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	 *
 	 * @param id     Employee id
 	 * @param format output format possible values are json or xml.
-	 * @return ResponseEntity<Employee>
+	 * @return ResponseEntity
 	 */
 	@Override
 	public ResponseEntity<Employee> getEmployee(Long id, String format) {
@@ -69,7 +69,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	 *
 	 * @param id     Employee id
 	 * @param format output format possible values are json or xml.
-	 * @return ResponseEntity<Employee>
+	 * 
 	 */
 	@Override
 	public ResponseEntity<Employee> deleteEmployee(Long id, String format) {
@@ -121,7 +121,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	 * @param managerId  Manager id of the employee
 	 * @param format     output format possible values are json or xml.
 	 *
-	 * @return ResponseEntity<Employee>
+	 * 
 	 */
 	@Override
 	public ResponseEntity<Employee> createEmployee(String name, String email, String title, String street, String city,
@@ -180,7 +180,7 @@ public class EmployeeAPIController implements IEmployeeAPI {
 	 * @param employerId employer id of the employee, required
 	 * @param managerId  Manager id of the employee
 	 * @param format     output format possible values are json or xml.
-	 * @return ResponseEntity<Employee>
+	 * 
 	 */
 	@Override
 	public ResponseEntity<Employee> updateEmployee(Long id, String name, String email, String title, String street,

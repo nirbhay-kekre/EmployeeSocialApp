@@ -39,7 +39,7 @@ public interface IEmployeeManagementService {
 	/**
 	 * Deletes the given employee, if the employee has no reports.
 	 *
-	 * @param employee
+	 * @param employee target employee object to delete
 	 * @return boolean, true if delete is successful
 	 */
 	public boolean deleteEmployee(Employee employee);
@@ -56,7 +56,6 @@ public interface IEmployeeManagementService {
 	/**
 	 * Creates and stores the new employee into the repository
 	 *
-	 * @param employee   Target employee object
 	 * @param name       name to be updated
 	 * @param email      email to be updated, must be unique
 	 * @param title      title of the employee

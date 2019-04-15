@@ -33,7 +33,7 @@ public interface ICollaborationAPI {
 	 * @param id1: Employee id
 	 * @param id2: Employee id
 	 * @param format: output format possible values are json or xml.
-	 * @return ResponseEntity<ResponseMessage> with response message indicating
+	 * @return ResponseEntity with response message indicating
 	 *         collaborator added
 	 */
 	@RequestMapping(value = "/collaborators/{id1}/{id2}", produces = { MediaType.APPLICATION_JSON_VALUE,
@@ -56,7 +56,7 @@ public interface ICollaborationAPI {
 	 * @param id1: Employee id
 	 * @param id2: Employee id
 	 * @param format: output format possible values are json or xml.
-	 * @return ResponseEntity<ResponseMessage> with response message indicating
+	 * @return ResponseEntity with response message indicating
 	 *         collaborator removed
 	 */
 	@RequestMapping(value = "/collaborators/{id1}/{id2}", produces = { MediaType.APPLICATION_JSON_VALUE,

@@ -42,7 +42,7 @@ public class CollaboratorAPIController implements ICollaborationAPI {
 	 * @param id1: Employee id
 	 * @param id2: Employee id
 	 * @param format: output format possible values are json or xml.
-	 * @return ResponseEntity<ResponseMessage> with response message indicating
+	 * @return ResponseEntity with response message indicating
 	 *         collaborator added
 	 */
 	@Override
@@ -77,7 +77,7 @@ public class CollaboratorAPIController implements ICollaborationAPI {
 	 * @param id1: Employee id
 	 * @param id2: Employee id
 	 * @param format: output format possible values are json or xml.
-	 * @return ResponseEntity<ResponseMessage> with response message indicating
+	 * @return ResponseEntity with response message indicating
 	 *         collaborator removed
 	 */
 	@Override
